@@ -43,23 +43,6 @@ public class FXApplication extends Application {
         stage.getIcons().add(new Image("icon.png"));
         VBox windowRootBox = new VBox();
         windowRootBox.setSpacing(vBoxSpacing);
-//        Akeychat.SignatureInfo.Builder sb = Akeychat.SignatureInfo.newBuilder();
-//        sb.setName("name1");
-//        sb.setKey("k1");
-//        ArrayList<Akeychat.SignatureInfo> test = new ArrayList<>();
-//        Akeychat.SignatureInfo.Builder sb2 = Akeychat.SignatureInfo.newBuilder();
-//        test.add(sb.build());
-//        sb2.setName("name2");
-//        sb2.setKey("k2");
-//        test.add(sb2.build());
-//        StringBuilder stringBuilder = new StringBuilder();
-//        for (Akeychat.SignatureInfo info : test) {
-//            String str = Base64.encodeBytes(info.toByteArray());
-//            printText(str);
-//            stringBuilder.append(str);
-//        }
-//        printText(stringBuilder.toString());
-//        Akeychat.SignatureInfo.getDescriptor().findFieldByName("xx").
         hintText.setText("说明：1、第一个框是Base64编码的字符串；" +
                 "2、第二个框是输入protobuf定义的类名(支持模糊搜索但只能匹配字母连续的字符串)；" +
                 "3、前面两个框内容输入完成点击【开始搜索】按钮；" +
@@ -173,9 +156,7 @@ public class FXApplication extends Application {
         vBox.getChildren().add(choiceBox);
         vBox.getChildren().add(btnHBox);
         vBox.getChildren().add(resetBtn);
-        resetBtn.setOnAction(e->{
-            setDefaultClazz();
-        });
+        resetBtn.setOnAction(e->setDefaultClazz());
         vBox.getChildren().add(scrollPane);
         vBox.setPadding(new Insets(30,0,0,0));
         windowRootBox.getChildren().add(hBox);
@@ -194,7 +175,6 @@ public class FXApplication extends Application {
         Class<?>[] objectClass = Akeychat.class.getClasses();
         classHashMap.clear();
         ObservableList<Class> items = new ObservableListWrapper<>(new ArrayList<>());
-//        items = choiceBox.getItems();
         for (int i = 0; i < objectClass.length; i++) {
             Class c = objectClass[i];
             String name = c.getCanonicalName();
@@ -220,25 +200,5 @@ public class FXApplication extends Application {
     }
     public static void main(final String[] arguments) {
         Application.launch(arguments);
-    }
-
-
-    public static boolean isPalindrome4(String word){
-        boolean res = helper(word,0);
-        return res;
-    }
-
-//    public static boolean isPalindrome4(String word){
-//        return helper(word,0);
-//    }
-    public static boolean helper(String word,int i){
-        if (i >= word.length() / 2) {
-            return true;
-        }
-
-        if (word.charAt(i) != word.charAt(word.length() - 1)) {
-            return false;
-        }
-        return helper(word,i+1);
     }
 }
